@@ -1,4 +1,3 @@
-//your code here
 const $ = (n) => document.querySelector(`[data-ns-test="${n}"]`);
 const NAMES = ["ROCK", "PAPER", "SCISSORS"];
 
@@ -11,15 +10,19 @@ function render() {
 }
 
 $("play-game").addEventListener("click", () => {
-  const n = parseInt($("game-number").value, 10);
-  if (isNaN(n) || n < 1) return;
+  const input = $("game-number");
+  const n = parseInt(input.value, 10) || 0;
+
   roundsLeft = n;
   userPts = 0;
   compPts = 0;
+
+  $("rounds-left").textContent = input.value;
+  $("user-points").textContent = 0;
+  $("computer-points").textContent = 0;
   $("computer-choose").textContent = "";
   $("round-result").textContent = "";
   $("game-result").textContent = "";
-  render();
 });
 
 function play(user) {
